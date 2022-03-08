@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 interface IModal {
   id: string;
@@ -9,26 +9,29 @@ interface IModal {
   providedIn: 'root'
 })
 export class ModalService {
-  private modals: IModal[] = [];
+  public modals: IModal[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   register(id: string) {
     this.modals.push({
       id,
-      visible:false
+      visible: false
     });
     console.log(this.modals);
   }
 
-  isModalOpen() {
-    return true;
+  isModalOpen(id: string): boolean {
+    return !!this.modals.find(element => element.id === id)?.visible
   }
 
-  toggleModal() {
-   // this.visible = !this.visible;
+  toggleModal(id: string) {
+    const modal = this.modals.find(element => element.id === id);
+    if (modal) {
+      modal.visible = !modal.visible
+    }
   }
-
 
 
 }
