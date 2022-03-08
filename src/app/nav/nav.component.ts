@@ -23,4 +23,5 @@ export class NavComponent implements OnInit {
     this.modal.toggleModal();
   }
 
+  
 }
